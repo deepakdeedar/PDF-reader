@@ -1,4 +1,19 @@
 import PyPDF2
+import sys
 
-with open("./dummy.pdf", "r") as file:
-    reader = PyPDF2.PdfFileReader()
+inputs = sys.argv[1:]
+
+
+def pdf_merger(pdf_list):
+    merger = PyPDF2.PdfFileMerger()
+    for pdf in pdf_list:
+        print(pdf)
+        merger.append(pdf)
+    merger.write("super.pdf")
+
+
+pdf_merger(inputs)
+
+# with open("./dummy.pdf", "rb") as file:
+#     reader = PyPDF2.PdfFileReader(file)
+#     print(reader.numPages)
